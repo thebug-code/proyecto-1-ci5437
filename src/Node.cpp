@@ -8,17 +8,18 @@
 
 using namespace std;
 
-// claae to represent a node in the search tree
+// clase que representa un nodo del arbol de busqueda
 class Node
 {
 
 public:
-    state_t state; // state represented by the node
-    Node *parent;  // parent node
-    string action; // action that led to this state
-    unsigned cost; // cost of the path from the root to this node
-    int color;     // color of the node: -1 black, 0 white, 1 gray
+    state_t state; // estado del nodo
+    Node *parent;  // padre del nodo
+    string action; // accion que lleva al nodo
+    unsigned cost; // costo del nodo
+    int color;     // color del nodo (0 = white, 1 = grey, -1 = black)
 
+    // constructor
     Node(state_t state, Node *parent, string action, unsigned cost, int color)
     {
         this->state = state;
@@ -28,11 +29,13 @@ public:
         this->color = color;
     }
 
+    // metodo que crea un nodo
     Node *make_node(state_t s, string action)
     {
         return new Node(state, this, action, this->cost + 1, 0);
     }
 
+    // metodo que extrae el camino desde el nodo hasta la raiz
     void extract_path(vector<string> &reversed_path)
     {
         Node *node = this;
@@ -43,6 +46,7 @@ public:
         }
     }
 
+    // metodo que crea un nodo raiz
     static Node *make_root(state_t state)
     {
         return new Node(state, NULL, "", 0, 0);
