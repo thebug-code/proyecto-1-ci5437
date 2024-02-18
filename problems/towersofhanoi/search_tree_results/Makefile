@@ -6,7 +6,7 @@ PSVNOPT = --state_map --backwards_moves --history_len=0
 #PSVNOPT2 = #--fwd_history_len=3 --bwd_history_len=0  --backwards_moves --state_map
 ROOTPATH = ../../..
 
-all: 15-puzzles.bfs 24-puzzles.bfs
+all: towersofhanoi4-12.bfs towersofhanoi4-14.bfs towersofhanoi4-18.bfs
 
 psvn2c_core.c:
 	cp $(ROOTPATH)/src/psvn/psvn2c_core.c ./psvn2c_core.c
@@ -19,7 +19,7 @@ psvn2c_abstraction.c:
 
 %.c: ../%.psvn psvn2c_core.c psvn2c_state_map.c psvn2c_abstraction.c
 	$(ROOTPATH)/bin/psvn2c $(PSVNOPT) --name=$(*F) < $< > $@
-	rm -f ./psvn2c_core.c ./psvn2c_state_map.c ./psvn2c_abstraction.c
+	#rm -f ./psvn2c_core.c ./psvn2c_state_map.c ./psvn2c_abstraction.c
 
 .PRECIOUS: %.c
 

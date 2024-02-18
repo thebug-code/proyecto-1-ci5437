@@ -6,8 +6,6 @@ PSVNOPT = --state_map --backwards_moves --history_len=0
 #PSVNOPT2 = #--fwd_history_len=3 --bwd_history_len=0  --backwards_moves --state_map
 ROOTPATH = ../../..
 
-all: 15-puzzles.bfs 24-puzzles.bfs
-
 psvn2c_core.c:
 	cp $(ROOTPATH)/src/psvn/psvn2c_core.c ./psvn2c_core.c
 
