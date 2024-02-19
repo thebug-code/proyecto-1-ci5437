@@ -6,7 +6,7 @@ PSVNOPT = --state_map --backwards_moves --history_len=0
 #PSVNOPT2 = #--fwd_history_len=3 --bwd_history_len=0  --backwards_moves --state_map
 ROOTPATH = ../../..
 
-all: topspin12-4.bfs topspin14-4.bfs topspin17-4.bfs
+all: topspin12-4.ucs topspin14-4.ucs topspin17-4.ucs
 
 psvn2c_core.c:
 	cp $(ROOTPATH)/src/psvn/psvn2c_core.c ./psvn2c_core.c
@@ -23,13 +23,13 @@ psvn2c_abstraction.c:
 
 .PRECIOUS: %.c
 
-%.bfs: %.c $(ROOTPATH)/src/search_algorithms/search_tree/Search_tree.cpp
-	$(CXX) $(OPT) $(ROOTPATH)/src/search_algorithms/search_tree/Search_tree.cpp -include $< -o $@
+%.ucs: %.c $(ROOTPATH)/src/search_algorithms/search_tree/ucs.cpp
+	$(CXX) $(OPT) $(ROOTPATH)/src/search_algorithms/search_tree/ucs.cpp -include $< -o $@
 	rm -f $*.c
 
 .PHONY: clean
 clean:
-	rm -fr *.bfs *.c *.dSYM *.o *~
+	rm -fr *.ucs *.c *.dSYM *.o *~
 
 cleanall: clean
-	rm -fr *.bfs
+	rm -fr *.ucs

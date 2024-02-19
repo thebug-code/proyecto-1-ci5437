@@ -1,4 +1,7 @@
 // Search tree with no duplicates
+/*
+ * Algorimo UCS (Uniform Cost Search) sin poda de ancestros repetidos
+ */
 #include <vector>
 #include "priority_queue.hpp"
 
