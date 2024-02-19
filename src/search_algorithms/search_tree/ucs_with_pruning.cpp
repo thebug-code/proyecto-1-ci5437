@@ -13,13 +13,10 @@ int main(int argc, char **argv)
     PriorityQueue<state_t> open;        // used for the states we have generated but not yet expanded (the OPEN list)
     state_map_t *map = new_state_map(); // contains the cost-to-goal for all states that have been generated
 
-    // add goal states
+    // add initial state
     first_goal_state(&state, &d);
-    do
-    {
-        state_map_add(map, &state, 0);
-        open.Add(0, 0, state);
-    } while (next_goal_state(&state, &d));
+    state_map_add(map, &state, 0);
+    open.Add(0, 0, state);
 
     d = 0;
     numAtD = 0;
@@ -79,7 +76,7 @@ int main(int argc, char **argv)
     // print last level
     if (numAtD > 0)
     {
-        printf("Estados: %" PRId64 ", Profundidad: %d, factor: %f\n", numAtD, d, branchingFactor);
+        printf("Estadossss: %" PRId64 ", Profundidad: %d, factor: %f\n", numAtD, d, branchingFactor);
     }
 
     return 0;

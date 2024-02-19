@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv)
 {
-    int64_t Nodes, numAtD;  // counters
+    uint64_t Nodes, numAtD; // counters
     float branchingFactor;  // branching factor
     state_t state, child;   // NOTE: "child" will be a predecessor of state, not a successor
     int d, ruleid;          // d: distance to initial state
@@ -13,13 +13,10 @@ int main(int argc, char **argv)
     PriorityQueue<state_t> open;        // used for the states we have generated but not yet expanded (the OPEN list)
     state_map_t *map = new_state_map(); // contains the cost-to-goal for all states that have been generated
 
-    // add goal states
+    // add initial states
     first_goal_state(&state, &d);
-    do
-    {
-        state_map_add(map, &state, 0);
-        open.Add(0, 0, state);
-    } while (next_goal_state(&state, &d));
+    state_map_add(map, &state, 0);
+    open.Add(0, 0, state);
 
     d = 0;
     numAtD = 0;
