@@ -56,15 +56,12 @@ abstractor:
 	$(CXX) $(OPT) ${ROOTPATH}/global/dist_pdb.cpp -include $< -o $@
 	rm -f $*.c
 
-# %.idaStar: %.c ../../../Global/idaStar.cpp priority_queue.hpp node.hpp
-# 	$(CXX) $(OPT) ../../../Global/idaStar.cpp -include $< -include 15-puzzle_PDB.cpp -o $@
-
 %.aStar: %.c ${ROOTPATH}/src/search-algorithms/a_star.cpp priority_queue.hpp node.hpp
 	$(CXX) $(OPT) ${ROOTPATH}/src/search-algorithms/a_star.cpp -include $< -include heuristics.cpp -o $@
 
-%.idastar: %.c ${ROOTPATH}/src/search-algorithms/idstar.cpp priority_queue.hpp node.hpp
+%.idastar: %.c ${ROOTPATH}/src/search-algorithms/idastar.cpp priority_queue.hpp node.hpp
 	$(CXX) $(OPT) ${ROOTPATH}/src/search-algorithms/idastar.cpp -include $< -include heuristics.cpp -o $@
 
 .PHONY: clean
 clean:
-	rm -fr *.succ *.dist *.distSummary *.dist_pdb psvn2c_core.c psvn2c_state_map.c *.abst *.pdb *.psvn psvn2c_abstraction.c abstractor node.hpp priority_queue.hpp *.dSYM *.o *~
+	rm -fr *.succ *.dist *.distSummary *.dist_pdb psvn2c_core.c psvn2c_state_map.c *.abst *.pdb *.psvn psvn2c_abstraction.c abstractor *.dSYM *.o *~
