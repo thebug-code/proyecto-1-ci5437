@@ -12,17 +12,17 @@ state_t abs_state3;
 unsigned maximum;
 
 void loadPDB(){
-	FILE *f1 = fopen("topspin14-4-abst-12-4_1.pdb","r");
-	FILE *f2 = fopen("topspin14-4-abst-12-4_2.pdb","r");
-	FILE *f3 = fopen("topspin14-4-abst-12-4_3.pdb","r");
+	FILE *f1 = fopen("topspin14-4-abs1.pdb", "r");
+	FILE *f2 = fopen("topspin14-4-abs2.pdb", "r");
+	FILE *f3 = fopen("topspin14-4-abs3.pdb", "r");
 
-    abs1 = read_abstraction_from_file("topspin14-4-abst-12-4_1.abst");
+    abs1 = read_abstraction_from_file("topspin14-4-abs1.abst");
 	map1 = read_state_map(f1);
 
-	abs2 = read_abstraction_from_file("topspin14-4-abst-12-4_2.abst");
+	abs2 = read_abstraction_from_file("topspin14-4-abs2.abst");
 	map2 = read_state_map(f2);
 
-	abs3 = read_abstraction_from_file("topspin14-4-abst-12-4_3.abst");
+	abs3 = read_abstraction_from_file("topspin14-4-abs3.abst");
 	map3 = read_state_map(f3);
 
 	fclose(f1);

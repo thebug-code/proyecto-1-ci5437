@@ -62,6 +62,9 @@ abstractor:
 %.aStar: %.c ${ROOTPATH}/src/search-algorithms/a_star.cpp priority_queue.hpp node.hpp
 	$(CXX) $(OPT) ${ROOTPATH}/src/search-algorithms/a_star.cpp -include $< -include heuristics.cpp -o $@
 
+%.idastar: %.c ${ROOTPATH}/src/search-algorithms/idastar.cpp priority_queue.hpp node.hpp
+	$(CXX) $(OPT) ${ROOTPATH}/src/search-algorithms/idastar.cpp -include $< -include heuristics.cpp -o $@
+
 .PHONY: clean
 clean:
 	rm -fr *.succ *.dist *.distSummary *.dist_pdb psvn2c_core.c psvn2c_state_map.c *.abst *.pdb *.psvn psvn2c_abstraction.c abstractor *.dSYM *.o *~

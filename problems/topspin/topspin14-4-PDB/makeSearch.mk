@@ -61,6 +61,9 @@ abstractor:
 %.aStar: %.c ${ROOTPATH}/src/search-algorithms/a_star.cpp priority_queue.hpp node.hpp
 	$(CXX) $(OPT) ${ROOTPATH}/src/search-algorithms/a_star.cpp -include $< -include heuristics.cpp -o $@
 
+%.idastar: %.c ${ROOTPATH}/src/search-algorithms/idastar.cpp priority_queue.hpp node.hpp
+	$(CXX) $(OPT) ${ROOTPATH}/src/search-algorithms/idastar.cpp -include $< -include heuristics.cpp -o $@
+
 # %.bfs: %.c ../../../Global/bfs.cpp priority_queue.hpp node.hpp
 # 	$(CXX) $(OPT) -std=c++11 ../../../Global/bfs.cpp -include $< -o $@
 
