@@ -45,6 +45,8 @@ abstractor:
 	$(CXX) $(OPT) ${ROOTPATH}/src/psvn/abstractor.cpp ${ROOTPATH}/src/psvn/psvn.cpp -o $@
 
 %.pdb: abstractor
+	# Copiar el archivo psvn a la carpeta actual (15-puzzles.psvn)
+	@cp ../`dirname $*`.psvn `dirname $*`.psvn
 	@rm -f `dirname $*`-`basename $*`.{abst,pdb,psvn}
 	./abstractor `dirname $*`.psvn `dirname $*`-`basename $*` < `basename $*`.txt
 	make -f makePDB.mk `dirname $*`-`basename $*`.distSummary
@@ -63,4 +65,4 @@ abstractor:
 
 .PHONY: clean
 clean:
-	rm -fr *.succ *.dist *.distSummary *.dist_pdb psvn2c_core.c psvn2c_state_map.c psvn2c_abstraction.c abstractor *.dSYM *.o *~
+	rm -fr *.succ *.dist *.distSummary *.dist_pdb psvn2c_core.c psvn2c_state_map.c *.abst *.pdb *.psvn psvn2c_abstraction.c abstractor *.dSYM *.o *~
