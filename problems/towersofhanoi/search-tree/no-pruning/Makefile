@@ -23,8 +23,8 @@ psvn2c_abstraction.c:
 
 .PRECIOUS: %.c
 
-%.ucs: %.c $(ROOTPATH)/src/search_algorithms/search_tree/ucs.cpp
-	$(CXX) $(OPT) $(ROOTPATH)/src/search_algorithms/search_tree/ucs.cpp -include $< -o $@
+%.ucs: %.c $(ROOTPATH)/src/search-algorithms/search_tree/ucs.cpp
+	$(CXX) $(OPT) $(ROOTPATH)/src/search-algorithms/search_tree/ucs.cpp -include $< -o $@
 	rm -f $*.c
 
 .PHONY: clean

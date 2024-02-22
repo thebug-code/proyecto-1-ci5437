@@ -1,2 +1,7 @@
 # psvn2c executable
 psvn2c
+*.abst
+*.pdb
+*.distSummary
+*.dist
+15-puzzles-abs*.psvn

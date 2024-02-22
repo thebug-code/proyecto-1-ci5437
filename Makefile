@@ -1,3 +1,4 @@
+$(info $(SHELL))
 CC = gcc
 CXX = g++
 #OPT = -g

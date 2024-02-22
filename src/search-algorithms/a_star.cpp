@@ -1,5 +1,5 @@
 #include <vector>
-#include "priority_queue.hpp"
+#include "search_tree/priority_queue.hpp"
 #include <stdbool.h>
 #include <fstream>
 #include <string>
@@ -43,7 +43,6 @@ int a_star(state_t *init_state) {
             // Verifica si el estado actual es un estado objetivo
             if (is_goal(&state)) return g;
             
-
             init_fwd_iter(&iter, &state);
             while((ruleid = next_ruleid(&iter)) >= 0) {
                 apply_fwd_rule(ruleid, &state, &child);
@@ -67,9 +66,7 @@ int a_star(state_t *init_state) {
     return -1;
 }
 
-//TEST FILE READER
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     char str[MAX_LINE_LENGTH + 1];
     string line;
     int d;
@@ -79,43 +76,37 @@ int main(int argc, char **argv)
     ifstream file;
     clock_t init_stateTime, endTime, timeSpan;
 
-
     loadPDB();
 
-
-    printf("Please enter a test file followed by ENTER: ");
+    printf("Ingresa el nombre del archivo de prueba: ");
     if (fgets(str, sizeof str, stdin) == NULL) {
-        printf("Error: empty input line.\n");
+        printf("Error: Invalid filename\n");
         return 0;
     }
 
-
     str[strlen(str)-1] = '\0';
+    file.open(str);
 
-    file.fronteir(str);
-
-    if (!file.is_fronteir()) {
-        printf("Error: Invalid filename:%s\n", str);
+    if (!file.is_open()) {
+        printf("Error: Invalid filename: %s\n", str);
         return -1;
     }
 
-    printf("Instance \t\t\t Solved   Time \t   Nodes Expanded   Distance\t\n");
+    printf("Instancia \t\t\t Resuelto   Tiempo \t   Nodos Expandidos   Distancia\t\n");
     printf("-----------------------------------------------------------------------------\n");
     
     while (!file.eof()) {
         getline(file, line);
         nchars = read_state(line.c_str(), &init_state);
         if (nchars <= 0) {
-            printf("Error: invalid state entered.\n");
+            printf("Error: estado invalido\n");
             continue;
         }
 
         init_stateTime = clock();
         nodes_expanded = 0; 
 
-        // A STAR BEGINS 
-        d = aStar(&init_state);
-        // A STAR ENDS
+        d = a_star(&init_state);
 
         endTime = clock();
 
@@ -132,6 +123,5 @@ int main(int argc, char **argv)
     }
 
     file.close();
-
     return 0;
 }

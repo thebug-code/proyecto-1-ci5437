@@ -4,8 +4,8 @@
 CC = gcc
 CXX = g++
 OPT = -Wall -O3 -Wno-unused-function -Wno-unused-variable
-PSVNOPT = --state_map --backward_moves --fwd_history_len=0 --bwd_history_len=0
-ROOTPATH=../../..
+PSVNOPT = --state_map --backward_moves --fwd_history_len=3 --bwd_history_len=0
+ROOTPATH = ../../..
 
 psvn2c_core.c:
 	cp ${ROOTPATH}/src/psvn/psvn2c_core.c ./psvn2c_core.c
@@ -26,11 +26,11 @@ priority_queue.hpp:
 	cp ${ROOTPATH}/src/search-algorithms/search_tree/priority_queue.hpp ./priority_queue.hpp
 
 node.hpp:
-	cp ${ROOTPATH}/search-algorithms/node.hpp ./node.hpp
+	cp ${ROOTPATH}/src/search-algorithms/node.hpp ./node.hpp
 
 
 %.succ: %.c ${ROOTPATH}/global/succ.c
-	$(CC) $(OPT) ${ROOTPATH}/psvn/global/succ.c -include $< -o $@
+	$(CC) $(OPT) ${ROOTPATH}/global/succ.c -include $< -o $@
 	rm -f $*.c
 
 %.dist: %.c ${ROOTPATH}/global/dist.cpp
@@ -60,6 +60,9 @@ abstractor:
 
 %.aStar: %.c ${ROOTPATH}/src/search-algorithms/a_star.cpp priority_queue.hpp node.hpp
 	$(CXX) $(OPT) ${ROOTPATH}/src/search-algorithms/a_star.cpp -include $< -include heuristics.cpp -o $@
+
+# %.bfs: %.c ../../../Global/bfs.cpp priority_queue.hpp node.hpp
+# 	$(CXX) $(OPT) -std=c++11 ../../../Global/bfs.cpp -include $< -o $@
 
 .PHONY: clean
 clean:
