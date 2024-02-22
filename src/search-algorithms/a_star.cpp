@@ -73,53 +73,77 @@ int main(int argc, char **argv) {
     ssize_t nchars;
     float runTime;
     state_t init_state;
-    ifstream file;
+    FILE *file;
     clock_t init_stateTime, endTime, timeSpan;
 
     loadPDB();
 
-    printf("Ingresa el nombre del archivo de prueba: ");
-    if (fgets(str, sizeof str, stdin) == NULL) {
-        printf("Error: Invalid filename\n");
+    if (argc < 2) {
+        printf("Error: Invalid number of arguments\n");
+        printf("Usage: %s <filename>\n", argv[0]);
         return 0;
     }
 
-    str[strlen(str)-1] = '\0';
-    file.open(str);
 
-    if (!file.is_open()) {
-        printf("Error: Invalid filename: %s\n", str);
-        return -1;
+    // printf("Ingresa el nombre del archivo de prueba: ");
+    // if (fgets(str, sizeof str, stdin) == NULL) {
+    //     printf("Error: Invalid filename\n");
+    //     return 0;
+    // }
+
+    file = fopen(argv[1], "r");
+    if (file == NULL) {
+        printf("Error: Could not open file %s\n", argv[1]);
+        return 0;
     }
+
+    printf("File: %s\n", argv[1]);
 
     printf("Instancia \t\t\t Resuelto   Tiempo \t   Nodos Expandidos   Distancia\t\n");
     printf("-----------------------------------------------------------------------------\n");
     
-    while (!file.eof()) {
-        getline(file, line);
-        nchars = read_state(line.c_str(), &init_state);
-        if (nchars <= 0) {
-            printf("Error: estado invalido\n");
-            continue;
-        }
+    // while (!file.eof()) {
+    //     getline(file, line);
+    //     nchars = read_state(line.c_str(), &init_state);
+    //     if (nchars <= 0) {
+    //         printf("Error: estado invalido\n");
+    //         continue;
+    //     }
 
-        init_stateTime = clock();
-        nodes_expanded = 0; 
+    //     init_stateTime = clock();
+    //     nodes_expanded = 0; 
 
-        d = a_star(&init_state);
+    //     d = a_star(&init_state);
 
-        endTime = clock();
+    //     endTime = clock();
 
-        timeSpan = endTime - init_stateTime;
+    //     timeSpan = endTime - init_stateTime;
 
-        runTime = timeSpan / (double) CLOCKS_PER_SEC;
+    //     runTime = timeSpan / (double) CLOCKS_PER_SEC;
 
-        if (d < 0) {
-            printf("%s \t False \t %f \t %ld \t\t %d\n", line.c_str(), runTime, nodes_expanded, d);
-        } else {
-            printf("%s \t True \t %f \t %ld \t\t %d\n", line.c_str(), runTime, nodes_expanded, d);
-        }
+    //     if (d < 0) {
+    //         printf("%s \t False \t %f \t %ld \t\t %d\n", line.c_str(), runTime, nodes_expanded, d);
+    //     } else {
+    //         printf("%s \t True \t %f \t %ld \t\t %d\n", line.c_str(), runTime, nodes_expanded, d);
+    //     }
         
+    // }
+
+    while (fgets(str, sizeof(str), file) != NULL) {
+        printf("Reading: %s", str);
+        if (read_state(str, &init_state) > 0) {
+            init_stateTime = clock();
+            nodes_expanded = 0;
+            d = a_star(&init_state);
+            endTime = clock();
+            timeSpan = endTime - init_stateTime;
+            runTime = timeSpan / (double) CLOCKS_PER_SEC;
+            if (d < 0) {
+                printf("False \t %f \t %ld \t\t %d\n", runTime, nodes_expanded, d);
+            } else {
+                printf("True \t %f \t %ld \t\t %d\n", runTime, nodes_expanded, d);
+            }
+        }
     }
 
     file.close();

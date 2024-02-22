@@ -45,7 +45,6 @@ abstractor:
 	$(CXX) $(OPT) ${ROOTPATH}/src/psvn/abstractor.cpp ${ROOTPATH}/src/psvn/psvn.cpp -o $@
 
 %.pdb: abstractor
-	# Copiar el archivo psvn a la carpeta actual (15-puzzles.psvn)
 	@cp ../`dirname $*`.psvn `dirname $*`.psvn
 	@rm -f `dirname $*`-`basename $*`.{abst,pdb,psvn}
 	./abstractor `dirname $*`.psvn `dirname $*`-`basename $*` < `basename $*`.txt

@@ -46,7 +46,7 @@ abstractor:
 
 %.pdb: abstractor
 	@rm -f `dirname $*`-`basename $*`.{abst,pdb,psvn}
-	./abstractor ../`dirname $*`.psvn `dirname $*`-`basename $*` < `basename $*`.txt
+	./abstractor `dirname $*`.psvn `dirname $*`-`basename $*` < `basename $*`.txt
 	make -f makePDB.mk `dirname $*`-`basename $*`.distSummary
 	echo Calculating `dirname $*`-`basename $*.pdb` ...
 	@./`dirname $*`-`basename $*`.distSummary `dirname $*`-`basename $*`.pdb
