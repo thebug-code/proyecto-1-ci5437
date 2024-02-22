@@ -146,6 +146,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    file.close();
+    fclose(file);
     return 0;
 }
