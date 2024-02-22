@@ -16,21 +16,21 @@ state_t abs_state4;
 unsigned maximum;
 
 void loadPDB(){
-	FILE *f1 = fopen("towersofhanoi4-12-abs1.pdb", "r");
-	FILE *f2 = fopen("towersofhanoi4-12-abs2.pdb", "r");
-	FILE *f3 = fopen("towersofhanoi4-12-abs3.pdb", "r");
-	FILE *f4 = fopen("towersofhanoi4-12-abs4.pdb", "r");
+	FILE *f1 = fopen("towersofhanoi4-14-abs1.pdb", "r");
+	FILE *f2 = fopen("towersofhanoi4-14-abs2.pdb", "r");
+	FILE *f3 = fopen("towersofhanoi4-14-abs3.pdb", "r");
+	FILE *f4 = fopen("towersofhanoi4-14-abs4.pdb", "r");
 
-	abs1 = read_abstraction_from_file("towersofhanoi4-12-abs1.abst");
+	abs1 = read_abstraction_from_file("towersofhanoi4-14-abs1.abst");
 	map1 = read_state_map(f1);
 
-	abs2 = read_abstraction_from_file("towersofhanoi4-12-abs2.abst");
+	abs2 = read_abstraction_from_file("towersofhanoi4-14-abs2.abst");
 	map2 = read_state_map(f2);
 
-	abs3 = read_abstraction_from_file("towersofhanoi4-12-abs3.abst");
+	abs3 = read_abstraction_from_file("towersofhanoi4-14-abs3.abst");
 	map3 = read_state_map(f3);
 
-	abs4 = read_abstraction_from_file("towersofhanoi4-12-abs4.abst");
+	abs4 = read_abstraction_from_file("towersofhanoi4-14-abs4.abst");
 	map4 = read_state_map(f4);
 
 	fclose(f1);
