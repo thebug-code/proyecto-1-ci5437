@@ -92,6 +92,8 @@ int main(int argc, char **argv)
     clock_t start, end;
     double cpu_time_used;
 
+    loadPDB();
+
     if (argc < 2)
     {
         printf("Usage: %s <file>\n", argv[0]);
