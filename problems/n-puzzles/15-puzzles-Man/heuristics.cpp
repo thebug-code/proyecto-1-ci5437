@@ -3,8 +3,12 @@
 #include <math.h>
 // GOAL 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 // Obtener la distancia Manhantan de una ficha a su posición objetivo
-int manhattan(state_t *state)
-{
+
+void loadPDB() {
+    printf("Loading PDBs...\n");
+}
+
+unsigned heuristic(state_t *state) {
     int h = 0;
     var_t *tile = state->vars;
     int row, col;
